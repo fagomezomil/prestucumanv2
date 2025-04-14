@@ -84,7 +84,6 @@ export default function Planifica() {
         nuevosFavoritos.push(nombre);
       }
       setFavoritos(nuevosFavoritos);
-      console.log("nuevos favoritos", nuevosFavoritos);
       const progress =
         (nuevosFavoritos.length / circuitosData.circuitos.length) * 100;
       setItinerarioProgress(progress);
@@ -167,7 +166,7 @@ export default function Planifica() {
           <p className="font-700 uppercase text-2xl text-white shrink-0 mr-4">
             {progressText}
           </p>
-          
+
           <button
             className="flex items-center px-4 text-white hover:bg-[#206C60] hover:rounded-t-md hover:h-full"
             onClick={handleDownloadClick}
@@ -228,15 +227,17 @@ export default function Planifica() {
                 Ingresá tu e-mail y te lo enviamos
               </p>
               <div className="flex flex-row gap-4">
-              <input
-                type="email"
-                name=""
-                id=""
-                className="rounded-xl pl-6 py-2 w-full text-[20px] italic"
-              />
-              <Link href="/pdf/itinerario2025.pdf" download>
-              <button className="text-white bg-[#ED7219] py-2 px-4 rounded-xl font-800 uppercase text-[16px]">Descargar</button>
-              </Link>
+                <input
+                  type="email"
+                  name=""
+                  id=""
+                  className="rounded-xl pl-6 py-2 w-full text-[20px] italic"
+                />
+                <Link href="/pdf/itinerario2025.pdf" download>
+                  <button className="text-white bg-[#ED7219] py-2 px-4 rounded-xl font-800 uppercase text-[16px]">
+                    Descargar
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

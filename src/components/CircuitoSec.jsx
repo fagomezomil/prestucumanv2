@@ -19,15 +19,18 @@ export default function CircuitoSec({ circuitosData, favoritos, actualizarFavori
                         <div className="flex flex-row gap-6 justify-end">
                             <div>
                                 <p className={`text-${circuito.color}-1 font-400 italic text-3xl`}>Armá tu itinerario y descargalo</p>
-                                {favoritos.length === 0 ? (
+                                {/* {favoritos.length === 0 ? (
                                     <p className="text-2xl font-400 text-neutral-400">No hay destinos seleccionados</p>
                                 ) : (
                                     <p className="text-2xl font-400 text-neutral-400">Destinos seleccionados: {favoritos.length}</p>
-                                )}
+                                )} */}
                             </div>
-                            <div>
+                            <div className='relative'>
                                 {favoritos.length !== 0 ? (
+                                    <div>
                                     <PiHeartFill className={`text-${circuito.color} rounded-full bg-white border border-neutral-200 p-2 text-[60px] shadow-lg`} />
+                                    <p className={`absolute h-6 w-6 rounded-full right-0 top-12 pt-[2px] text-white text-[15px] text-center bg-${circuito.color}`}>{favoritos.length}</p>
+                                    </div>
                                 ) : (
                                     <PiHeartDuotone className={`text-${circuito.color} rounded-full bg-white border border-neutral-200 p-2 text-[60px] shadow-lg`} />
                                 )}

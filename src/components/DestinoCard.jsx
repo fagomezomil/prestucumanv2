@@ -38,7 +38,7 @@ export default function DestinoCard({
             {destino.productos.map((producto, index) => (
               <div
                 key={index}
-                className="border border-neutral-100 w-fit h-fit pb-4 rounded-md relative"
+                className="border border-neutral-100 w-fit h-fit pb-4 rounded-lg relative bg-white"
               >
                 <button
                   className={`rounded-full bg-white p-1 text-[32px] absolute top-2 right-2`}
