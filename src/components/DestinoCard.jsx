@@ -56,7 +56,7 @@ export default function DestinoCard({
                   width={250}
                   height={180}
                   
-                  className="w-full rounded-t-md h-[180px]"
+                  className="w-full rounded-t-md h-[180px] object-cover"
                 />
                 <h4 className="text-[20px] font-700 leading-[19px] px-3 pt-3 uppercase text-neutral-700">
                   {producto.nombre}
