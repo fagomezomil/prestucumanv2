@@ -114,9 +114,9 @@ export default function Planifica() {
       <div className="">
         <div className="w-full">
           <div className="grid grid-cols-6 justify-center w-full">
-            <div className="col-span-6 xl:col-span-1 pl-12 grid grid-cols-4 items-center bg-[#206C60] mni-w-[150px] ">
-              <p className="col-span-2 xl:col-span-3 text-[30px]	shrink-0 leading-7 font-400 text-white ">
-                Elegí tu destino y <br className="hidden xl:block" /> planifica tu viaje
+            <div className="col-span-6 xl:col-span-1 pl-12 grid grid-cols-2 xl:grid-cols-4 items-center bg-[#206C60] min-w-[150px] ">
+              <p className="col-span-2 xl:col-span-3 text-[30px]	 leading-7 font-400 text-white ">
+                Elegí tu destino y <br className="hidden  xl:block" /> planifica tu viaje
               </p>
               <FaChevronCircleRight className="text-white w-[40px] h-[40px]" />
             </div>
