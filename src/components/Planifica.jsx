@@ -114,12 +114,19 @@ export default function Planifica() {
       <div className="">
         <div className="w-full">
           <div className="grid grid-cols-6 justify-center w-full">
-            <div className="col-span-6 xl:col-span-1 pl-12 grid grid-cols-2 xl:grid-cols-4 items-center bg-[#206C60] min-w-[150px] ">
+            <div className="bg-[#206C60] col-span-6 xl:col-span-1 flex items-center p-2 xl:pl-12 justify-center">
+              <p className="col-span-2 xl:col-span-3 text-[24px] lg:text-[28px] xl:text-[30px] leading-7 pr-2 font-400 text-white xl:shrink-0">
+                Elegí tu destino y <br className="hidden  xl:block" /> planifica
+                tu viaje
+              </p>
+              <FaChevronCircleRight className="text-white  lg:text-[34px] xl:text-[40px]" />
+            </div>
+            {/* <div className="col-span-6 xl:col-span-1 pl-12 grid grid-cols-2 xl:grid-cols-4 items-center bg-[#206C60] min-w-[150px] ">
               <p className="col-span-2 xl:col-span-3 text-[30px]	 leading-7 font-400 text-white ">
                 Elegí tu destino y <br className="hidden  xl:block" /> planifica tu viaje
               </p>
               <FaChevronCircleRight className="text-white w-[40px] h-[40px]" />
-            </div>
+            </div> */}
             <div className="col-span-6 xl:col-span-5 flex flex-row">
               {Object.values(logos).map((logo, index) => {
                 const isActive = logo.nombre === circuitoSeleccionado;
