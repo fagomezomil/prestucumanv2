@@ -17,6 +17,15 @@ import LogoCalchaqui from "@/images/calchaquilogo.svg";
 import circuitos from "@/data/circuitos";
 import CircuitoSec from "@/components/CircuitoSec";
 import Link from "next/link";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 const circuitosData = circuitos();
 
 const logos = {
@@ -127,7 +136,7 @@ export default function Planifica() {
               </p>
               <FaChevronCircleRight className="text-white w-[40px] h-[40px]" />
             </div> */}
-            <div className="col-span-6 xl:col-span-5 flex flex-row">
+            <div className="hidden lg:col-span-6 xl:col-span-5 lg:flex lg:flex-row">
               {Object.values(logos).map((logo, index) => {
                 const isActive = logo.nombre === circuitoSeleccionado;
 
@@ -147,6 +156,30 @@ export default function Planifica() {
                 );
               })}
             </div>
+            <Select className="">
+              <SelectTrigger className="w-full block lg:hidden bg-slate-400">
+                <SelectValue placeholder="Circuito" />
+              </SelectTrigger>
+              <SelectContent className="w-full ">
+                {Object.values(logos).map((logo, index) => {
+                  const isActive = logo.nombre === circuitoSeleccionado;
+                  return (
+                    <SelectItem
+                      key={index}
+                      value={logo.nombre}
+                      onClick={() => setCircuitoSeleccionado(logo.nombre)}
+                      style={{ backgroundColor: isActive ? logo.bg : "" }}
+                    >
+                      <Image
+                        src={logo.logo}
+                        alt={`Logo ${index}`}
+                        className="h-[40px] w-full"
+                      />
+                    </SelectItem>
+                  );
+                })}
+              </SelectContent>
+            </Select>
           </div>
         </div>
         <div className="">
