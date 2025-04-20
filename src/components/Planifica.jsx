@@ -9,10 +9,15 @@ import { IoIosPhonePortrait } from "react-icons/io";
 import Modal from "react-modal";
 
 import LogoHistorica from "@/images/historicalogo.svg";
+import LogoHistoricaMb from "@/images/historicalogomb.svg";
 import LogoYungas from "@/images/yungaslogo.svg";
+import LogoYungasMb from "@/images/yungaslogomb.svg";
 import LogoSur from "@/images/surlogo.svg";
+import LogoSurMb from "@/images/surlogomb.svg";
 import LogoChoromoro from "@/images/choromorologo.svg";
+import LogoChoromoroMb from "@/images/choromorologomb.svg";
 import LogoCalchaqui from "@/images/calchaquilogo.svg";
+import LogoCalchaquiMb from "@/images/calchaquilogomb.svg";
 
 import circuitos from "@/data/circuitos";
 import CircuitoSec from "@/components/CircuitoSec";
@@ -35,10 +40,12 @@ const logos = {
     img: "casah",
     color: "historica",
     bg: "#01415C",
+    mb: LogoHistoricaMb
   },
   Yungas: {
     nombre: "Yungas",
     logo: LogoYungas,
+    mb: LogoYungasMb,
     img: "quetipi-inicio",
     color: "yungas",
     bg: "#66ac7c",
@@ -46,6 +53,7 @@ const logos = {
   Choromoro: {
     nombre: "Choromoro",
     logo: LogoChoromoro,
+    mb: LogoChoromoroMb,
     img: "pozoindio-inicio",
     color: "choromoro",
     bg: "#FD5901",
@@ -53,6 +61,7 @@ const logos = {
   Calchaqui: {
     nombre: "Calchaqui",
     logo: LogoCalchaqui,
+    mb: LogoCalchaquiMb,
     img: "menhires-inicio",
     color: "calchaqui",
     bg: "#9E2D2C",
@@ -60,6 +69,7 @@ const logos = {
   Sur: {
     nombre: "Sur",
     logo: LogoSur,
+    mb: LogoSurMb,
     img: "sur",
     color: "sur",
     bg: "#508E6D",
@@ -156,30 +166,39 @@ export default function Planifica() {
                 );
               })}
             </div>
-            <Select className="">
-              <SelectTrigger className="w-full block lg:hidden bg-slate-400">
-                <SelectValue placeholder="Circuito" />
+            <div className="col-span-6 lg:hidden xl:col-span-1 flex items-center justify-center">
+            <Select  onValueChange={setCircuitoSeleccionado} >
+              <SelectTrigger
+                className={`w-[100%] col-span-6 border-none rounded-none`}
+                style={{ backgroundColor: logos[circuitoSeleccionado]?.bg }}
+              >
+                {logos[circuitoSeleccionado]?.logo && (
+                  <Image
+                    src={logos[circuitoSeleccionado].mb}
+                    alt={`Logo ${circuitoSeleccionado}`}
+                    className="w-full object-contain h-[65px]"
+                  />
+                )}
               </SelectTrigger>
-              <SelectContent className="w-full ">
-                {Object.values(logos).map((logo, index) => {
-                  const isActive = logo.nombre === circuitoSeleccionado;
-                  return (
-                    <SelectItem
-                      key={index}
-                      value={logo.nombre}
-                      onClick={() => setCircuitoSeleccionado(logo.nombre)}
-                      style={{ backgroundColor: isActive ? logo.bg : "" }}
-                    >
-                      <Image
-                        src={logo.logo}
-                        alt={`Logo ${index}`}
-                        className="h-[40px] w-full"
-                      />
-                    </SelectItem>
-                  );
-                })}
+              <SelectContent className=" bg-neutral-400" style={{ transform: "translateX(-10px)" }}>
+                {Object.entries(logos).map(([nombre, logo]) => (
+                  <SelectItem
+                    key={nombre}
+                    value={nombre}
+                    className=""
+                    style={{ backgroundColor: nombre === circuitoSeleccionado ? logo.bg : "" }}
+                  >
+                    <Image
+                      src={logo.mb}
+                      alt={`Logo ${nombre}`}
+                      className="h-[65px] p-2 w-full object-contain"
+                    />
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
+            </div>
+
           </div>
         </div>
         <div className="">

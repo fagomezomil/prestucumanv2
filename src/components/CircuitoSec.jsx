@@ -11,7 +11,7 @@ export default function CircuitoSec({ circuitosData, favoritos, actualizarFavori
             {circuitosFiltrados.map((circuito, index) => (
                 <div key={index} className="grid grid-cols-7 relative">
                     <div className="items-center col-span-7 grid grid-cols-2 xl:grid-cols-3 mx-12 mt-8">
-                        <h2 className={`uppercase font-800 text-[64px] leading-[50px] text-${circuito.color}`}>{circuito.nombre}</h2>
+                        <h2 className={`hidden lg:block uppercase font-800 text-[64px] leading-[50px] text-${circuito.color}`}>{circuito.nombre}</h2>
                         <p className={`text-[34px] font-400 text-neutral-500 leading-[35px] w-96`}>{circuito.destacado}</p>
                         <div className="flex flex-row gap-6 justify-end items-center">
                             <div>
