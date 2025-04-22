@@ -111,7 +111,7 @@ export default function Planifica() {
   );
 
   return (
-    <div className=" bg-white overflow-hidden font-400 h-screen mx-auto font-sofiacond relative">
+    <div className=" bg-white overflow-hidden font-400 mx-auto font-sofiacond relative">
       <div className="bg-white w-screen py-3 flex flex-row items-center justify-between shadow-md">
         <Image
           src="/images/tucumanlogo.svg"
@@ -138,7 +138,7 @@ export default function Planifica() {
                 Elegí tu destino y <br className="hidden  xl:block" /> planifica
                 tu viaje
               </p>
-              <FaChevronCircleRight className="text-white  lg:text-[34px] xl:text-[40px]" />
+              <FaChevronCircleRight className="text-white hidden lg:block  lg:text-[30px] xl:text-[40px]" />
             </div>
             {/* <div className="col-span-6 xl:col-span-1 pl-12 grid grid-cols-2 xl:grid-cols-4 items-center bg-[#206C60] min-w-[150px] ">
               <p className="col-span-2 xl:col-span-3 text-[30px]	 leading-7 font-400 text-white ">
@@ -169,14 +169,14 @@ export default function Planifica() {
             <div className="col-span-6 lg:hidden xl:col-span-1 flex items-center justify-center">
             <Select  onValueChange={setCircuitoSeleccionado} >
               <SelectTrigger
-                className={`w-[100%] col-span-6 border-none rounded-none`}
+                className={`w-[100%] col-span-6 border-none rounded-none p-6`}
                 style={{ backgroundColor: logos[circuitoSeleccionado]?.bg }}
               >
                 {logos[circuitoSeleccionado]?.logo && (
                   <Image
                     src={logos[circuitoSeleccionado].mb}
                     alt={`Logo ${circuitoSeleccionado}`}
-                    className="w-full object-contain h-[65px]"
+                    className="w-full object-contain h-[45px]"
                   />
                 )}
               </SelectTrigger>
@@ -191,7 +191,7 @@ export default function Planifica() {
                     <Image
                       src={logo.mb}
                       alt={`Logo ${nombre}`}
-                      className="h-[65px] p-2 w-full object-contain"
+                      className="h-[55px] pl-0 p-2 w-full object-contain"
                     />
                   </SelectItem>
                 ))}

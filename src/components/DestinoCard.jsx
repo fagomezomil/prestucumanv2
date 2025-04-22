@@ -4,7 +4,7 @@ import { GoPlusCircle } from "react-icons/go";
 import { useState } from "react";
 import Modal from "react-modal";
 
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 export default function DestinoCard({
   circuito,
@@ -13,6 +13,7 @@ export default function DestinoCard({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
+  const [destinoSeleccionado, setDestinoSeleccionado] = useState(null);
 
   const handleOpenModal = (producto) => {
     setProductoSeleccionado(producto);
@@ -25,8 +26,136 @@ export default function DestinoCard({
 
   return (
     <div>
-      <ScrollArea type="always"  className="h-[420px]  overflow-y-auto">
-      <ScrollBar orientation="vertical" />
+      <div>
+        {circuito.destinos.map((destino, index) => (
+          <button
+            key={index}
+            className={`font-700 rounded-md bg-${destino.color}-1 text-white text-2xl lg:text-3xl w-fit px-4 m-1`}
+            onClick={() => setDestinoSeleccionado(destino)}
+          >
+            {destino.nombre}
+          </button>
+        ))}
+      </div>
+      {destinoSeleccionado && (
+        <div className="flex overflow-x-auto">
+          {destinoSeleccionado.productos.map((producto, index) => (
+            <div
+              key={index}
+              className="border border-neutral-100 w-fit h-fit pb-4 rounded-lg relative bg-white"
+            >
+              <button
+                className={`rounded-full bg-white p-1 text-[32px] absolute top-2 right-2`}
+                onClick={() => actualizarFavoritos(producto.nombre)}
+              >
+                {favoritos.indexOf(producto.nombre) !== -1 ? (
+                  <PiHeartFill className="text-[#206c60]" />
+                ) : (
+                  <PiHeartDuotone className="text-[#206c60]" />
+                )}
+              </button>
+              <Image
+                src={producto.imagen}
+                alt={`imagen ${index}`}
+                width={250}
+                height={180}
+                className="w-full rounded-t-md h-[180px] object-cover"
+              />
+              <h4 className="text-[20px] font-700 leading-[19px] px-3 pt-3 uppercase text-neutral-700">
+                {producto.nombre}
+              </h4>
+              <div className="flex flex-row gap-2 my-2 ml-3">
+                {producto.categorias.map((categoria, index) => (
+                  <p
+                    key={index}
+                    className="rounded-md px-2 py-1 bg-neutral-400 text-white text-[16px] font-500"
+                  >
+                    {categoria}
+                  </p>
+                ))}
+              </div>
+              {/* <p className="text-[16px] font-400 text-neutral-400 px-3 pt-1">
+            {producto.detalle.substring(0, 79) + "..."}
+          </p> */}
+              <button
+                className="mt-2 ml-3 border rounded-lg hover:bg-[#206C60] hover:text-white"
+                onClick={() => handleOpenModal(producto)}
+              >
+                <div className="flex flex-row items-center gap-2 px-3">
+                  <p>Conocé más aquí</p>
+                  <GoPlusCircle />
+                </div>
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+      {/* {
+        circuito.destinos.map((destino, index) => (
+          <div key={index}>
+          <button
+            
+            className={`font-700 rounded-md bg-${destino.color}-1 text-white text-2xl lg:text-3xl w-fit px-4 m-1`}
+          >
+            {destino.nombre}
+          </button>
+          <div className="flex overflow-x-auto">
+          {destino.productos.map((producto, index) => (
+              <div
+                key={index}
+                className="border border-neutral-100 w-fit h-fit pb-4 rounded-lg relative bg-white"
+              >
+                <button
+                  className={`rounded-full bg-white p-1 text-[32px] absolute top-2 right-2`}
+                  onClick={() => actualizarFavoritos(producto.nombre)}
+                >
+                  {favoritos.indexOf(producto.nombre) !== -1 ? (
+                    <PiHeartFill className="text-[#206c60]" />
+                  ) : (
+                    <PiHeartDuotone className="text-[#206c60]" />
+                  )}
+                </button>
+                <Image
+                  src={producto.imagen}
+                  alt={`imagen ${index}`}
+                  width={250}
+                  height={180}
+                  
+                  className="w-full rounded-t-md h-[180px] object-cover"
+                />
+                <h4 className="text-[20px] font-700 leading-[19px] px-3 pt-3 uppercase text-neutral-700">
+                  {producto.nombre}
+                </h4>
+                <div className="flex flex-row gap-2 my-2 ml-3">
+                  {producto.categorias.map((categoria, index) => (
+                    <p
+                      key={index}
+                      className="rounded-md px-2 py-1 bg-neutral-400 text-white text-[16px] font-500"
+                    >
+                      {categoria}
+                    </p>
+                  ))}
+                </div>
+                <p className="text-[16px] font-400 text-neutral-400 px-3 pt-1">
+                  {producto.detalle.substring(0, 79) + "..."}
+                </p>
+                <button
+                  className="mt-2 ml-3 border rounded-lg hover:bg-[#206C60] hover:text-white"
+                  onClick={() => handleOpenModal(producto)}
+                >
+                  <div className="flex flex-row items-center gap-2 px-3">
+                    <p>Conocé más aquí</p>
+                    <GoPlusCircle />
+                  </div>
+                </button>
+              </div>
+            ))}
+          </div>
+          
+          </div>))
+      } */}
+      {/* <ScrollArea type="always"  className="h-[420px]  overflow-x-auto">
+      <ScrollBar orientation="horizontal" />
       {circuito.destinos.map((destino, index) => (
         <div key={index} className="">
           <h3
@@ -34,7 +163,7 @@ export default function DestinoCard({
           >
             {destino.nombre}
           </h3>
-          <div className="grid grid-cols-5 gap-4">
+          <div className="grid grid-cols-12 gap-4">
             {destino.productos.map((producto, index) => (
               <div
                 key={index}
@@ -89,7 +218,7 @@ export default function DestinoCard({
         </div>
       ))}
       
-      </ScrollArea>
+      </ScrollArea> */}
       <Modal
         isOpen={isOpen}
         onRequestClose={handleCloseModal}
@@ -129,7 +258,9 @@ export default function DestinoCard({
                 </p>
                 <button
                   className={`rounded-full bg-white p-1 text-[32px]`}
-                  onClick={() => actualizarFavoritos(productoSeleccionado.nombre)}
+                  onClick={() =>
+                    actualizarFavoritos(productoSeleccionado.nombre)
+                  }
                 >
                   {favoritos.indexOf(productoSeleccionado.nombre) !== -1 ? (
                     <PiHeartFill className="text-[#206c60]" />
@@ -153,7 +284,6 @@ export default function DestinoCard({
               </p>
             </div>
             <div className="flex flex-row gap-4 mt-10">
-
               {Array(5)
                 .fill()
                 .map((_, index) => (
@@ -169,7 +299,6 @@ export default function DestinoCard({
           </div>
         )}
       </Modal>
-      
     </div>
   );
 }
